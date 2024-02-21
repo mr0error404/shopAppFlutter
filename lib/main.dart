@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp/modules/onBording/onBoardingScreen.dart';
 import 'package:shopapp/shared/cubit/cubit.dart';
 import 'package:shopapp/shared/cubit/states.dart';
-import 'package:shopapp/shared/network/myBlocObserver.dart';
+import 'package:shopapp/shared/myBlocObserver.dart';
 import 'package:shopapp/shared/style/themes.dart';
 
 void main() async {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:shopapp/models/boardingModel.dart';
 
 Widget buildBoardingItem(BoardingModel model) => Column(
@@ -66,12 +67,17 @@ Widget defaultFormField({
   double circular = 30.0,
 }) =>
     TextFormField(
+      // cursorColor: HexColor("#FFBF2F"),
       validator: validation,
       controller: textEditingController,
       onFieldSubmitted: onSubmitted,
       onChanged: onChanged,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
+        // focusColor: HexColor("#FFBF2F"),
+        // hoverColor: HexColor("#FFBF2F"),
+        // fillColor: HexColor("#FFBF2F"),
+
         labelText: label,
         prefixIcon: Icon(prefix),
         suffixIcon: sufixs != null
@@ -87,4 +93,41 @@ Widget defaultFormField({
       obscureText: isPassword,
       onTap: onTap,
       enabled: isEnabeld,
+    );
+
+Widget defaultButton({
+  double rid = 20.0,
+  Color colorText = Colors.white,
+  bool uperCase = true,
+  required String text,
+  required double width,
+  required Color back,
+  required Function() function,
+  double height = 40.0,
+}) =>
+    Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(rid),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: MaterialButton(
+        onPressed: function,
+        child: Text(
+          uperCase ? text.toUpperCase() : text,
+          style: TextStyle(
+            color: colorText,
+          ),
+        ),
+        color: back,
+      ),
+    );
+Widget defaultTextButton({
+  required Function() function,
+  required String text,
+}) =>
+    TextButton(
+      onPressed: function,
+      child: Text(text),
     );

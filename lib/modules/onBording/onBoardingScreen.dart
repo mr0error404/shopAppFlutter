@@ -53,7 +53,7 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
                     onPressed: () {
                       navigateAndFinish(
                         context,
-                        const LoginScreen(),
+                        LoginScreen(),
                       );
                     },
                     child: Text(
@@ -121,7 +121,7 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
                       if (isLast) {
                         navigateAndFinish(
                           context,
-                          const LoginScreen(),
+                          LoginScreen(),
                         );
                       } else {
                         boardController.nextPage(
