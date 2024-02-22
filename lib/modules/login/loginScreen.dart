@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shopapp/layout/shopLayout.dart';
 import 'package:shopapp/modules/register/register.dart';
 import 'package:shopapp/shared/components/components.dart';
-import 'package:shopapp/shared/cubit/cubit.dart';
-import 'package:shopapp/shared/cubit/states.dart';
+import 'package:shopapp/shared/cubit/cubitLogin/cubit.dart';
+import 'package:shopapp/shared/cubit/cubitLogin/states.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:shopapp/shared/network/local/cacheHelper.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -25,25 +27,23 @@ class LoginScreen extends StatelessWidget {
           if (state.loginModel?.status ?? false) {
             print(state.loginModel?.message);
             print(state.loginModel?.data?.token);
-            Fluttertoast.showToast(
-              msg: state.loginModel?.message ?? "",
-              toastLength: Toast.LENGTH_LONG,
-              gravity: ToastGravity.BOTTOM,
-              timeInSecForIosWeb: 5,
-              backgroundColor: Color(0xffbd00),
-              textColor: Colors.white,
-              fontSize: 16.0,
+            CacheHelper.saveDate(
+                    key: "token", value: state.loginModel?.data?.token)
+                .then((value) {
+              navigateAndFinish(
+                context,
+                ShopLayout(),
+              );
+            });
+            ShowToast(
+              text: state.loginModel!.message ?? "",
+              state: ToastStates.SUCCESS,
             );
           } else {
             print(state.loginModel?.message);
-            Fluttertoast.showToast(
-              msg: state.loginModel?.message ?? "",
-              toastLength: Toast.LENGTH_LONG,
-              gravity: ToastGravity.BOTTOM,
-              timeInSecForIosWeb: 5,
-              backgroundColor: Color(0x00D00909),
-              textColor: Colors.white,
-              fontSize: 16.0,
+            ShowToast(
+              text: state.loginModel!.message ?? "",
+              state: ToastStates.ERROR,
             );
           }
         }

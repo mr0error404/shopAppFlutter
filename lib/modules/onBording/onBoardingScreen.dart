@@ -5,6 +5,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:shopapp/models/boardingModel.dart';
 import 'package:shopapp/modules/login/loginScreen.dart';
 import 'package:shopapp/shared/components/components.dart';
+import 'package:shopapp/shared/network/local/cacheHelper.dart';
 import 'package:shopapp/shared/style/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -23,6 +24,22 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
   // const OnBordingScreen({super.key});
   var boardController = PageController();
   bool isLast = false;
+
+  void submit() {
+    CacheHelper.saveDate(key: "onBoarding", value: true).then(
+      (value) {
+        print("--------sharder---------");
+        navigateAndFinish(
+          context,
+          LoginScreen(),
+        );
+      },
+    ).catchError(
+      (onError) {
+        print(onError.toString());
+      },
+    );
+  }
 
   List<BoardingModel> boarding = [
     BoardingModel(
@@ -51,10 +68,7 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
                 ? const Text("")
                 : TextButton(
                     onPressed: () {
-                      navigateAndFinish(
-                        context,
-                        LoginScreen(),
-                      );
+                      submit();
                     },
                     child: Text(
                       "SKIP",
@@ -119,10 +133,7 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
                   FloatingActionButton(
                     onPressed: () {
                       if (isLast) {
-                        navigateAndFinish(
-                          context,
-                          LoginScreen(),
-                        );
+                        submit();
                       } else {
                         boardController.nextPage(
                           duration: const Duration(
