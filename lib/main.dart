@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopapp/modules/login/loginScreen.dart';
 import 'package:shopapp/modules/onBording/onBoardingScreen.dart';
 import 'package:shopapp/shared/cubit/cubit.dart';
 import 'package:shopapp/shared/cubit/states.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
             themeMode: ThemeMode.light,
             home: Directionality(
               textDirection: TextDirection.ltr,
-              child: OnBordingScreen(),
+              child: LoginScreen(),
             ),
           );
         },

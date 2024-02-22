@@ -8,10 +8,15 @@ class ShopCubit extends Cubit<ShopStates> {
   ShopCubit() : super(ShopAppInitialState());
 
   static ShopCubit get(context) => BlocProvider.of(context);
+
   void userLogin({
     required String email,
     required String password,
   }) {
+    print("------Start------");
+    emit(
+      ShopAppLoadingState(),
+    );
     DioHelper.postData(
       url: LOGIN,
       data: {
@@ -20,12 +25,15 @@ class ShopCubit extends Cubit<ShopStates> {
       },
     ).then(
       (value) {
-        print(value);
+        print("------Value------");
+        print(value.toString());
         emit(
           ShopAppSuccessState(),
         );
       },
     ).catchError((error) {
+      print("------Error------");
+      print(error.toString());
       emit(
         ShopAppErrorState(
           error.toString(),
