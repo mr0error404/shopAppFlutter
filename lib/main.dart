@@ -7,8 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp/layout/shopLayout.dart';
 import 'package:shopapp/modules/login/loginScreen.dart';
 import 'package:shopapp/modules/onBording/onBoardingScreen.dart';
+import 'package:shopapp/shared/components/constanys.dart';
 import 'package:shopapp/shared/cubit/cubitLogin/cubit.dart';
 import 'package:shopapp/shared/cubit/cubitLogin/states.dart';
+import 'package:shopapp/shared/cubit/cubitShop/cubit.dart';
 import 'package:shopapp/shared/myBlocObserver.dart';
 import 'package:shopapp/shared/network/local/cacheHelper.dart';
 import 'package:shopapp/shared/network/remote/dioHelper.dart';
@@ -21,7 +23,7 @@ void main() async {
   await CacheHelper.init();
   Widget widget;
   bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
-  String token = CacheHelper.getData(key: 'token');
+  token = CacheHelper.getData(key: 'token')??"";
   if (onBoarding != null) {
     if (token != null)
       widget = ShopLayout();
@@ -49,8 +51,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => ShopCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (BuildContext context) => ShopCubit(),
+        ),
+        BlocProvider(
+          create: (BuildContext context) => ShopCubitApp()..getHomeData(),
+        ),
+      ],
       child: BlocConsumer<ShopCubit, ShopStates>(
         listener: (context, state) {},
         builder: (context, state) {
