@@ -24,7 +24,7 @@ class ShopCubitApp extends Cubit<ShopStatesApp> {
     SettingsScreen(),
   ];
 
-  late HomeModel homeModel;
+  late HomeModel homeModel; // ----> Error
 
   void changeBottom(index) {
     currentIndex = index;
