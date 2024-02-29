@@ -11,28 +11,34 @@ class HomeModel {
 class HomeDataModel {
   List<BannersModel> banners = [];
   List<ProductsModel> products = [];
+
   HomeDataModel.fromJson({Map<String, dynamic>? json}) {
-    // json?['banners'].forEach(
-    //   (element) {
-    //     banners.add(element);
-    //   },
-    // );
+
     json?['banners'].forEach(
       (element) {
         banners.add(BannersModel.fromJson(json: element));
       },
     );
-    // json?['products'].forEach(
-    //   (element) {
-    //     banners.add(element);
-    //   },
-    // );
     banners = List.from(
       json?['banners']?.map(
             (item) {
               return BannersModel.fromJson(json: item);
             },
           ) ??
+          [],
+    );
+
+    json?['products'].forEach(
+          (element) {
+            products.add(ProductsModel.fromJson(json: element));
+      },
+    );
+    products = List.from(
+      json?['products']?.map(
+            (item) {
+          return ProductsModel.fromJson(json: item);
+        },
+      ) ??
           [],
     );
   }

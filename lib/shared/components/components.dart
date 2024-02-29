@@ -163,3 +163,14 @@ Color chooseToastColor(ToastStates state) {
   }
   return color;
 }
+
+Widget myDivider() => Padding(
+  padding: const EdgeInsetsDirectional.only(
+    start: 35.0,
+  ),
+  child: Container(
+    color: Colors.grey,
+    width: double.infinity,
+    height: 1.0,
+  ),
+);

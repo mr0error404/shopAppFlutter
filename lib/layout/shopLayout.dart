@@ -8,6 +8,7 @@ import 'package:shopapp/shared/components/constanys.dart';
 import 'package:shopapp/shared/cubit/cubitShop/cubit.dart';
 import 'package:shopapp/shared/cubit/cubitShop/states.dart';
 import 'package:shopapp/shared/network/local/cacheHelper.dart';
+import 'package:shopapp/shared/style/colors.dart';
 
 class ShopLayout extends StatelessWidget {
   const ShopLayout({super.key});
@@ -39,6 +40,9 @@ class ShopLayout extends StatelessWidget {
           ),
           body: cubit.bottomScreens[cubit.currentIndex],
           bottomNavigationBar: BottomNavigationBar(
+            // backgroundColor: defaultColor,
+            // backgroundColor: COLO,
+            selectedItemColor: defaultColor,
             onTap: (index) {
               cubit.changeBottom(index);
             },
