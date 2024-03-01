@@ -93,7 +93,7 @@ class SettingsScreen extends StatelessWidget {
                   text: "UPDATE",
                   width: double.infinity,
                   back: defaultColor,
-                  function: () {
+                  function: () { 
                     if (formKey.currentState!.validate()) {
                       ShopCubitApp.get(context).UpdateUserData(
                         nameController.text,
