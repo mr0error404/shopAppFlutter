@@ -68,7 +68,7 @@ class ProductsScreen extends StatelessWidget {
                 enableInfiniteScroll: true,
                 reverse: false,
                 autoPlay: true,
-                autoPlayInterval: Duration(seconds: 1),
+                autoPlayInterval: Duration(seconds: 3),
                 autoPlayAnimationDuration: Duration(seconds: 1),
                 autoPlayCurve: Curves.fastLinearToSlowEaseIn,
                 scrollDirection: Axis.horizontal,

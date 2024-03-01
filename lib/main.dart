@@ -34,22 +34,18 @@ void main() async {
     widget = OnBordingScreen();
   }
 
-  // late Future<bool> onBoarding = CacheHelper.getData(key: 'onBoarding');
   runApp(
     MyApp(
-      // onBoarding: await CacheHelper.getData(key: 'onBoarding') ?? false,
       startWidget: widget,
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  // final bool onBoarding;
   final Widget? startWidget;
-  // late Future<bool> onBoarding;
+
   MyApp({required this.startWidget});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -74,8 +70,6 @@ class MyApp extends StatelessWidget {
             themeMode: ThemeMode.light,
             home: Directionality(
               textDirection: TextDirection.ltr,
-              // child: LoginScreen(),
-              // child: onBoarding ? LoginScreen() : OnBordingScreen(),
               child: startWidget!,
             ),
           );
