@@ -13,7 +13,6 @@ class HomeDataModel {
   List<ProductsModel> products = [];
 
   HomeDataModel.fromJson({Map<String, dynamic>? json}) {
-
     json?['banners'].forEach(
       (element) {
         banners.add(BannersModel.fromJson(json: element));
@@ -29,16 +28,16 @@ class HomeDataModel {
     );
 
     json?['products'].forEach(
-          (element) {
-            products.add(ProductsModel.fromJson(json: element));
+      (element) {
+        products.add(ProductsModel.fromJson(json: element));
       },
     );
     products = List.from(
       json?['products']?.map(
             (item) {
-          return ProductsModel.fromJson(json: item);
-        },
-      ) ??
+              return ProductsModel.fromJson(json: item);
+            },
+          ) ??
           [],
     );
   }

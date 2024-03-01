@@ -12,7 +12,6 @@ import 'package:shopapp/shared/cubit/cubitRegister/states.dart';
 import 'package:shopapp/shared/network/local/cacheHelper.dart';
 
 class Register extends StatelessWidget {
-
   var formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
@@ -24,36 +23,35 @@ class Register extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ShopRgisterCubit(),
-      child: BlocConsumer<ShopRgisterCubit , ShopRegisterStates>(
-        listener: (context , state) {
-          if (state is ShopAppRegisterSuccessState) {
-            if (state.loginModel?.status ?? false) {
-              print(state.loginModel?.message);
-              print(state.loginModel?.data?.token);
-              CacheHelper.saveDate(
-                  key: "token", value: state.loginModel?.data?.token)
-                  .then((value) {
-                token = state.loginModel!.data!.token!;
-                navigateAndFinish(
-                  context,
-                  ShopLayout(),
-                );
-              });
-              ShowToast(
-                text: state.loginModel!.message ?? "",
-                state: ToastStates.SUCCESS,
+      child: BlocConsumer<ShopRgisterCubit, ShopRegisterStates>(
+          listener: (context, state) {
+        if (state is ShopAppRegisterSuccessState) {
+          if (state.loginModel?.status ?? false) {
+            print(state.loginModel?.message);
+            print(state.loginModel?.data?.token);
+            CacheHelper.saveDate(
+                    key: "token", value: state.loginModel?.data?.token)
+                .then((value) {
+              token = state.loginModel!.data!.token!;
+              navigateAndFinish(
+                context,
+                ShopLayout(),
               );
-            } else {
-              print(state.loginModel?.message);
-              ShowToast(
-                text: state.loginModel!.message ?? "",
-                state: ToastStates.ERROR,
-              );
-            }
+            });
+            ShowToast(
+              text: state.loginModel!.message ?? "",
+              state: ToastStates.SUCCESS,
+            );
+          } else {
+            print(state.loginModel?.message);
+            ShowToast(
+              text: state.loginModel!.message ?? "",
+              state: ToastStates.ERROR,
+            );
           }
-        },
-        builder: (context , state ){
-          return Scaffold(
+        }
+      }, builder: (context, state) {
+        return Scaffold(
           body: Center(
             child: SingleChildScrollView(
               child: Padding(
@@ -70,8 +68,8 @@ class Register extends StatelessWidget {
                       Text(
                         "Register now to browse our hot offers",
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: Colors.grey,
-                        ),
+                              color: Colors.grey,
+                            ),
                       ),
                       const SizedBox(
                         height: 30.0,
@@ -130,7 +128,8 @@ class Register extends StatelessWidget {
                         sufixs: ShopCubit.get(context).suffix,
                         isPassword: ShopCubit.get(context).isPasswordShow,
                         sufixFunction: () {
-                          ShopRgisterCubit.get(context).changePasswordVisibility();
+                          ShopRgisterCubit.get(context)
+                              .changePasswordVisibility();
                         },
                         onSubmitted: (value) {
                           // if (formKey.currentState!.validate()) {
@@ -201,8 +200,7 @@ class Register extends StatelessWidget {
             ),
           ),
         );
-        }
-      ),
+      }),
     );
   }
 }

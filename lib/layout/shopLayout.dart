@@ -21,7 +21,7 @@ class ShopLayout extends StatelessWidget {
         var cubit = ShopCubitApp.get(context);
         return Scaffold(
           appBar: AppBar(
-            title: Text(
+            title: const Text(
               "Shop",
             ),
             actions: [
@@ -32,7 +32,7 @@ class ShopLayout extends StatelessWidget {
                     SearchScreen(),
                   );
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.search,
                 ),
               ),

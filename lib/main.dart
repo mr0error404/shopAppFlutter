@@ -23,7 +23,7 @@ void main() async {
   await CacheHelper.init();
   Widget widget;
   bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
-  token = CacheHelper.getData(key: 'token')??"";
+  token = CacheHelper.getData(key: 'token') ?? "";
   print(token);
   if (onBoarding != null) {
     if (token != null)
@@ -58,7 +58,11 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => ShopCubit(),
         ),
         BlocProvider(
-          create: (BuildContext context) => ShopCubitApp()..getHomeData()..getCategoriesData()..getFavorites()..getUserData(),
+          create: (BuildContext context) => ShopCubitApp()
+            ..getHomeData()
+            ..getCategoriesData()
+            ..getFavorites()
+            ..getUserData(),
         ),
       ],
       child: BlocConsumer<ShopCubit, ShopStates>(

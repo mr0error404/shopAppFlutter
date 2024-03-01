@@ -3,7 +3,6 @@ class FavoritesModel {
   Null? message;
   Data? data;
 
-
   FavoritesModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
@@ -93,11 +92,10 @@ class FavoritesData {
   int? id;
   Product? product;
 
-
   FavoritesData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     product =
-    json['product'] != null ? new Product.fromJson(json['product']) : null;
+        json['product'] != null ? new Product.fromJson(json['product']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -121,12 +119,12 @@ class Product {
 
   Product(
       {this.id,
-        this.price,
-        this.oldPrice,
-        this.discount,
-        this.image,
-        this.name,
-        this.description});
+      this.price,
+      this.oldPrice,
+      this.discount,
+      this.image,
+      this.name,
+      this.description});
 
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
