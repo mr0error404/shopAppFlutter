@@ -5,8 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shopapp/layout/shopLayout.dart';
-import 'package:shopapp/modules/register/register.dart';
+import 'package:shopapp/modules/register/registerScreen.dart';
 import 'package:shopapp/shared/components/components.dart';
+import 'package:shopapp/shared/components/constanys.dart';
 import 'package:shopapp/shared/cubit/cubitLogin/cubit.dart';
 import 'package:shopapp/shared/cubit/cubitLogin/states.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -30,6 +31,7 @@ class LoginScreen extends StatelessWidget {
             CacheHelper.saveDate(
                     key: "token", value: state.loginModel?.data?.token)
                 .then((value) {
+                  token = state.loginModel!.data!.token!;
               navigateAndFinish(
                 context,
                 ShopLayout(),
