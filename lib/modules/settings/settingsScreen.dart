@@ -90,7 +90,7 @@ class SettingsScreen extends StatelessWidget {
                   height: 20.0,
                 ),
                 defaultButton(
-                  text: "UPDATE",
+                  text: "UPDATE", 
                   width: double.infinity,
                   back: defaultColor,
                   function: () {    
